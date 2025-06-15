@@ -1,0 +1,973 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BlazeTrial Official | Premium Streetwear</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700;800;900&family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #FF5722;
+            --primary-dark: #e64a19;
+            --secondary: #212121;
+            --light: #f5f5f5;
+            --gray: #757575;
+            --light-gray: #e0e0e0;
+            --transition: all 0.3s ease;
+            --shadow: 0 5px 15px rgba(0,0,0,0.1);
+            --shadow-hover: 0 10px 25px rgba(0,0,0,0.15);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            color: var(--secondary);
+            background-color: white;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        h1, h2, h3, h4, h5 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            line-height: 1.2;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .section-padding {
+            padding: 100px 0;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            padding: 15px 0;
+            transition: var(--transition);
+        }
+
+        header.scrolled {
+            padding: 10px 0;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 900;
+            color: var(--primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo span {
+            color: var(--secondary);
+            margin-left: 5px;
+        }
+
+        .logo-icon {
+            font-size: 24px;
+            margin-right: 8px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav li {
+            margin: 0 15px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--secondary);
+            font-weight: 600;
+            font-size: 14px;
+            letter-spacing: 1px;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        nav a:after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: var(--transition);
+        }
+
+        nav a:hover:after {
+            width: 100%;
+        }
+
+        nav a:hover {
+            color: var(--primary);
+        }
+
+        .nav-icons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .nav-icons a {
+            color: var(--secondary);
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .nav-icons a:hover {
+            color: var(--primary);
+            transform: translateY(-3px);
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: var(--primary);
+            color: white;
+            font-size: 10px;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+        }
+
+        .mobile-toggle {
+            display: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: var(--secondary);
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1483985988355-763728e1935b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1740&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: white;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            padding-top: 70px;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero h1 {
+            font-size: 4.5rem;
+            margin-bottom: 20px;
+            letter-spacing: 3px;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 30px;
+            line-height: 1.6;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--primary);
+            color: white;
+            padding: 14px 32px;
+            text-decoration: none;
+            border-radius: 30px;
+            text-transform: uppercase;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            transition: var(--transition);
+            border: 2px solid var(--primary);
+            font-size: 14px;
+            box-shadow: 0 4px 15px rgba(255, 87, 34, 0.3);
+        }
+
+        .btn:hover {
+            background-color: transparent;
+            color: var(--primary);
+            transform: translateY(-3px);
+            box-shadow: 0 7px 20px rgba(255, 87, 34, 0.4);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            color: white;
+            border: 2px solid white;
+            margin-left: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .btn-outline:hover {
+            background-color: white;
+            color: var(--secondary);
+            box-shadow: 0 7px 20px rgba(0,0,0,0.3);
+        }
+
+        /* Featured Products */
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+            position: relative;
+        }
+
+        .section-title h2 {
+            font-size: 2.8rem;
+            display: inline-block;
+            background-color: white;
+            padding: 0 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .section-title:after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--primary), transparent);
+            z-index: 0;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .product-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: var(--primary);
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 700;
+            z-index: 2;
+        }
+
+        .product-img {
+            height: 350px;
+            width: 100%;
+            background-size: cover;
+            background-position: center;
+            transition: transform 0.5s ease;
+        }
+
+        .product-card:hover .product-img {
+            transform: scale(1.05);
+        }
+
+        .product-info {
+            padding: 20px;
+            text-align: center;
+        }
+
+        .product-title {
+            font-size: 1.2rem;
+            margin-bottom: 8px;
+        }
+
+        .product-price {
+            color: var(--primary);
+            font-weight: 800;
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+        }
+
+        .product-colors {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-bottom: 15px;
+        }
+
+        .color-option {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            cursor: pointer;
+            border: 1px solid var(--light-gray);
+        }
+
+        .color-black { background: #212121; }
+        .color-red { background: #f44336; }
+        .color-blue { background: #2196f3; }
+        .color-gray { background: #9e9e9e; }
+
+        /* About Section */
+        .about {
+            background-color: var(--secondary);
+            color: white;
+        }
+
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+        }
+
+        .about-text {
+            flex: 1;
+        }
+
+        .about-text h2 {
+            font-size: 2.8rem;
+            margin-bottom: 25px;
+            color: white;
+        }
+
+        .about-text p {
+            margin-bottom: 20px;
+            line-height: 1.8;
+            font-size: 1.1rem;
+        }
+
+        .about-img {
+            flex: 1;
+            height: 500px;
+            background: url('https://images.unsplash.com/photo-1523381210434-271e8be1f52b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1740&q=80');
+            background-size: cover;
+            background-position: center;
+            border-radius: 10px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            animation: float 8s ease-in-out infinite;
+        }
+
+        /* Lookbook Section */
+        .lookbook {
+            background-color: var(--light);
+        }
+
+        .lookbook-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+        }
+
+        .lookbook-item {
+            position: relative;
+            height: 500px;
+            background-size: cover;
+            background-position: center;
+            border-radius: 10px;
+            overflow: hidden;
+            display: flex;
+            align-items: flex-end;
+            box-shadow: var(--shadow);
+        }
+
+        .lookbook-overlay {
+            background: linear-gradient(transparent, rgba(0,0,0,0.8));
+            padding: 30px;
+            color: white;
+            width: 100%;
+            transform: translateY(100px);
+            transition: var(--transition);
+        }
+
+        .lookbook-item:hover .lookbook-overlay {
+            transform: translateY(0);
+        }
+
+        .lookbook-overlay h3 {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+        }
+
+        /* Newsletter */
+        .newsletter {
+            background: linear-gradient(45deg, #ff6b35, var(--primary));
+            color: white;
+            text-align: center;
+            padding: 80px 0;
+        }
+
+        .newsletter h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        .newsletter p {
+            max-width: 600px;
+            margin: 0 auto 30px;
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .newsletter-form {
+            max-width: 500px;
+            margin: 0 auto;
+            display: flex;
+        }
+
+        .newsletter-form input {
+            flex: 1;
+            padding: 15px 25px;
+            border: none;
+            border-radius: 50px 0 0 50px;
+            font-size: 1rem;
+            outline: none;
+        }
+
+        .newsletter-form button {
+            background: var(--secondary);
+            color: white;
+            border: none;
+            padding: 0 30px;
+            border-radius: 0 50px 50px 0;
+            font-weight: 700;
+            cursor: pointer;
+            transition: var(--transition);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .newsletter-form button:hover {
+            background: black;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--secondary);
+            color: white;
+            padding: 70px 0 20px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+            margin-bottom: 50px;
+        }
+
+        .footer-column h4 {
+            font-size: 1.3rem;
+            margin-bottom: 25px;
+            position: relative;
+        }
+
+        .footer-column h4:after {
+            content: "";
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background: var(--primary);
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column li {
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+        }
+
+        .footer-column i {
+            margin-right: 10px;
+            color: var(--primary);
+            width: 20px;
+        }
+
+        .footer-column a {
+            color: #bbb;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-column a:hover {
+            color: var(--primary);
+            padding-left: 5px;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-icons a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.1);
+            color: white;
+            transition: var(--transition);
+        }
+
+        .social-icons a:hover {
+            background: var(--primary);
+            transform: translateY(-5px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: #999;
+            font-size: 0.9rem;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+            100% {
+                transform: translateY(0px);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .hero h1 {
+                font-size: 3.5rem;
+            }
+            
+            .about-content {
+                flex-direction: column;
+            }
+            
+            .footer-content {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .lookbook-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .about-img {
+                height: 400px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav ul {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: white;
+                flex-direction: column;
+                padding: 20px 0;
+                box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            }
+            
+            nav ul.active {
+                display: flex;
+            }
+            
+            nav li {
+                margin: 10px 0;
+                text-align: center;
+            }
+            
+            .mobile-toggle {
+                display: block;
+            }
+            
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .btn {
+                display: block;
+                margin: 15px auto;
+                width: 80%;
+                max-width: 300px;
+            }
+            
+            .btn-outline {
+                margin-left: 0;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .section-title h2 {
+                font-size: 2.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <a href="#" class="logo">
+                <i class="fas fa-fire logo-icon"></i>
+                BLAZE<span>TRIAL</span>
+            </a>
+            
+            <nav>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#products">Shop</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#lookbook">Lookbook</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+            
+            <div class="nav-icons">
+                <a href="#"><i class="fas fa-search"></i></a>
+                <a href="#"><i class="fas fa-shopping-bag"></i><span class="cart-count">3</span></a>
+                <a href="#"><i class="fas fa-user"></i></a>
+            </div>
+            
+            <div class="mobile-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>IGNITE YOUR STYLE</h1>
+            <p>Discover premium streetwear that combines urban edge with exceptional comfort. Designed for those who dare to stand out from the crowd.</p>
+            <a href="#products" class="btn">SHOP COLLECTION</a>
+            <a href="#about" class="btn btn-outline">OUR STORY</a>
+        </div>
+    </section>
+
+    <!-- Featured Products -->
+    <section id="products" class="section-padding">
+        <div class="container">
+            <div class="section-title">
+                <h2>New Arrivals</h2>
+            </div>
+            
+            <div class="products-grid">
+                <div class="product-card">
+                    <div class="product-badge">NEW</div>
+                    <div class="product-img" style="background-image: url('https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=1160&q=80');"></div>
+                    <div class="product-info">
+                        <h3 class="product-title">Ember Hoodie</h3>
+                        <p class="product-price">$79.99</p>
+                        <div class="product-colors">
+                            <div class="color-option color-black"></div>
+                            <div class="color-option color-red"></div>
+                            <div class="color-option color-gray"></div>
+                        </div>
+                        <a href="#" class="btn">ADD TO CART</a>
+                    </div>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-badge">HOT</div>
+                    <div class="product-img" style="background-image: url('https://images.unsplash.com/photo-1591047139829-d91aecb6caea?ixlib=rb-4.0.3&auto=format&fit=crop&w=1036&q=80');"></div>
+                    <div class="product-info">
+                        <h3 class="product-title">Flame Tee</h3>
+                        <p class="product-price">$39.99</p>
+                        <div class="product-colors">
+                            <div class="color-option color-black"></div>
+                            <div class="color-option color-blue"></div>
+                        </div>
+                        <a href="#" class="btn">ADD TO CART</a>
+                    </div>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-badge">SALE</div>
+                    <div class="product-img" style="background-image: url('https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?ixlib=rb-4.0.3&auto=format&fit=crop&w=1167&q=80');"></div>
+                    <div class="product-info">
+                        <h3 class="product-title">Ash Cargo Pants</h3>
+                        <p class="product-price">$89.99</p>
+                        <div class="product-colors">
+                            <div class="color-option color-black"></div>
+                            <div class="color-option color-gray"></div>
+                        </div>
+                        <a href="#" class="btn">ADD TO CART</a>
+                    </div>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-img" style="background-image: url('https://images.unsplash.com/photo-1611312449408-fcece27cdbb7?ixlib=rb-4.0.3&auto=format&fit=crop&w=1160&q=80');"></div>
+                    <div class="product-info">
+                        <h3 class="product-title">Blaze Jacket</h3>
+                        <p class="product-price">$129.99</p>
+                        <div class="product-colors">
+                            <div class="color-option color-black"></div>
+                            <div class="color-option color-red"></div>
+                        </div>
+                        <a href="#" class="btn">ADD TO CART</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about section-padding">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text">
+                    <h2>OUR STORY</h2>
+                    <p>BlazeTrial was born from a passion for urban fashion and a desire to create clothing that stands out from the crowd. Founded in 2023, we've quickly made our mark in the streetwear scene with our bold designs and commitment to quality.</p>
+                    <p>Every piece in our collection is crafted with meticulous attention to detail, using premium materials that ensure comfort and durability. Our designs draw inspiration from urban landscapes, music, and the vibrant energy of city life.</p>
+                    <p>We're more than just a clothing brand - we're a movement. Join us as we redefine streetwear and set the world ablaze with our unique style.</p>
+                    <a href="#" class="btn">LEARN MORE</a>
+                </div>
+                <div class="about-img"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Lookbook Section -->
+    <section id="lookbook" class="lookbook section-padding">
+        <div class="container">
+            <div class="section-title">
+                <h2>Lookbook</h2>
+            </div>
+            
+            <div class="lookbook-grid">
+                <div class="lookbook-item" style="background-image: url('https://images.unsplash.com/photo-1529333166437-7750a6dd5a70?ixlib=rb-4.0.3&auto=format&fit=crop&w=1769&q=80');">
+                    <div class="lookbook-overlay">
+                        <h3>Urban Explorer</h3>
+                        <p>Street-ready styles for the modern adventurer</p>
+                    </div>
+                </div>
+                
+                <div class="lookbook-item" style="background-image: url('https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?ixlib=rb-4.0.3&auto=format&fit=crop&w=1887&q=80');">
+                    <div class="lookbook-overlay">
+                        <h3>Nightfall Collection</h3>
+                        <p>Bold after-dark essentials</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter -->
+    <section class="newsletter">
+        <div class="container">
+            <h2>JOIN THE TRIBE</h2>
+            <p>Subscribe to our newsletter and get 15% off your first order. Be the first to know about new collections and exclusive offers.</p>
+            <form class="newsletter-form">
+                <input type="email" placeholder="Enter your email address" required>
+                <button type="submit">SUBSCRIBE</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h4>BlazeTrial</h4>
+                    <p>Premium streetwear for the bold and adventurous. Redefining urban fashion since 2023.</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-pinterest-p"></i></a>
+                        <a href="#"><i class="fab fa-tiktok"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h4>Shop</h4>
+                    <ul>
+                        <li><a href="#">New Arrivals</a></li>
+                        <li><a href="#">Best Sellers</a></li>
+                        <li><a href="#">Hoodies & Sweatshirts</a></li>
+                        <li><a href="#">T-Shirts</a></li>
+                        <li><a href="#">Pants & Shorts</a></li>
+                        <li><a href="#">Accessories</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h4>Help</h4>
+                    <ul>
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">Shipping Information</a></li>
+                        <li><a href="#">Returns & Exchanges</a></li>
+                        <li><a href="#">FAQs</a></li>
+                        <li><a href="#">Size Guide</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h4>Contact</h4>
+                    <ul>
+                        <li><i class="fas fa-map-marker-alt"></i> 123 Fashion Street, New York</li>
+                        <li><i class="fas fa-phone"></i> +1 (555) 123-4567</li>
+                        <li><i class="fas fa-envelope"></i> info@blazetrial.com</li>
+                        <li><i class="fas fa-clock"></i> Mon-Fri: 9AM - 6PM</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 BlazeTrial Official. All rights reserved. | Designed with <i class="fas fa-heart" style="color: var(--primary);"></i></p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Mobile menu toggle
+        const mobileToggle = document.querySelector('.mobile-toggle');
+        const navMenu = document.querySelector('nav ul');
+        
+        mobileToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            mobileToggle.querySelector('i').classList.toggle('fa-bars');
+            mobileToggle.querySelector('i').classList.toggle('fa-times');
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    window.scrollTo({
+                        top: target.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu if open
+                    if (navMenu.classList.contains('active')) {
+                        navMenu.classList.remove('active');
+                        mobileToggle.querySelector('i').classList.add('fa-bars');
+                        mobileToggle.querySelector('i').classList.remove('fa-times');
+                    }
+                }
+            });
+        });
+
+        // Newsletter form submission
+        const newsletterForm = document.querySelector('.newsletter-form');
+        newsletterForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const email = newsletterForm.querySelector('input').value;
+            alert(`Thank you for subscribing with ${email}! Your 15% discount code is: BLAZE15`);
+            newsletterForm.reset();
+        });
+
+        // Product cart functionality
+        const addToCartButtons = document.querySelectorAll('.product-card .btn');
+        const cartCount = document.querySelector('.cart-count');
+        let count = 3;
+        
+        addToCartButtons.forEach(button => {
+            button.addEventListener('click', (e) => {
+                e.preventDefault();
+                const product = button.closest('.product-card');
+                const productName = product.querySelector('.product-title').textContent;
+                
+                count++;
+                cartCount.textContent = count;
+                
+                // Animation effect
+                cartCount.style.transform = 'scale(1.5)';
+                setTimeout(() => {
+                    cartCount.style.transform = 'scale(1)';
+                }, 300);
+                
+                alert(`${productName} added to cart!`);
+            });
+        });
+    </script>
+</body>
+</html>
